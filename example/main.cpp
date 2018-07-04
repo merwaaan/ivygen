@@ -3,10 +3,10 @@
 
 int main()
 {
-    BasicMesh wall;
+    Ivygen::BasicMesh wall;
     // TODO Build wall
 
-    Ivy ivy;
+    IvyGen::Ivy ivy;
     // TODO ivy.Grow();
 
     return 0;

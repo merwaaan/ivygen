@@ -21,6 +21,8 @@
 #include "basic_mesh.h"
 #include <algorithm>
 
+using namespace IvyGen;
+
 BasicMesh::BasicMesh()
 {
     boundingSphereRadius = 1.0f;

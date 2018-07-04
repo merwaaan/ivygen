@@ -24,116 +24,122 @@
 #include "basic_mesh.h"
 #include <vector>
 
-/** an ivy node */
-class IvyNode
+namespace IvyGen
 {
-public:
-
-    IvyNode() :
-        length(0.0f),
-        floatingLength(0.0f),
-        climb(false)
+    /** an ivy node */
+    class IvyNode
     {
-    }
+    public:
 
-    /** node position */
-    Vector3d pos;
+        IvyNode() :
+            length(0.0f),
+            floatingLength(0.0f),
+            climb(false)
+        {
+        }
 
-    /** primary grow direction, a weighted sum of the previous directions */
-    Vector3d primaryDir;
+        /** node position */
+        Vector3d pos;
 
-    /** adhesion vector as a result from other scene objects */
-    Vector3d adhesionVector;
+        /** primary grow direction, a weighted sum of the previous directions */
+        Vector3d primaryDir;
 
-    /** a smoothed adhesion vector computed and used during the birth phase,
-       since the ivy leaves are align by the adhesion vector, this smoothed vector
-       allows for smooth transitions of leaf alignment */
-    Vector3d smoothAdhesionVector;
+        /** adhesion vector as a result from other scene objects */
+        Vector3d adhesionVector;
 
-    /** length of the associated ivy branch at this node */
-    float length;
+        /** a smoothed adhesion vector computed and used during the birth phase,
+           since the ivy leaves are align by the adhesion vector, this smoothed vector
+           allows for smooth transitions of leaf alignment */
+        Vector3d smoothAdhesionVector;
 
-    /** length at the last node that was climbing */
-    float floatingLength;
+        /** length of the associated ivy branch at this node */
+        float length;
 
-    /** climbing state */
-    bool climb;
-};
+        /** length at the last node that was climbing */
+        float floatingLength;
 
-/** an ivy root point */
-class IvyRoot
-{
-public:
+        /** climbing state */
+        bool climb;
+    };
 
-    /** a number of nodes */
-    std::vector<IvyNode> nodes;
+    /** an ivy root point */
+    class IvyRoot
+    {
+    public:
 
-    /** alive state */
-    bool alive;
+        /** a number of nodes */
+        std::vector<IvyNode> nodes;
 
-    /** number of parents, represents the level in the root hierarchy */
-    int parents;
-};
+        /** alive state */
+        bool alive;
 
-/** the ivy itself, derived from basic mesh that allows to handle the final ivy mesh as a drawable object */
-class Ivy : public BasicMesh
-{
-public:
+        /** number of parents, represents the level in the root hierarchy */
+        int parents;
+    };
 
-    Ivy();
+    /** the ivy itself, derived from basic mesh that allows to handle the final ivy mesh as a drawable object */
+    class Ivy : public BasicMesh
+    {
+    public:
 
-    void resetSettings();
+        Ivy();
 
-    /** initialize a new ivy root */
-    void seed(const Vector3d &seedPos);
+        void resetSettings();
 
-    /** one single grow iteration */
-    void grow();
+        /** initialize a new ivy root */
+        void seed(const Vector3d &seedPos);
 
-    /** compute the adhesion of scene objects at a point pos*/
-    Vector3d computeAdhesion(const Vector3d &pos);
+        /** one single grow iteration */
+        void grow();
 
-    /** computes the collision detection for an ivy segment oldPos->newPos, newPos will be modified if necessary */
-    bool computeCollision(const Vector3d &oldPos, Vector3d &newPos, bool &climbingState);
+        /** compute the adhesion of scene objects at a point pos*/
+        Vector3d computeAdhesion(const Vector3d &pos);
 
-    /** creates the ivy triangle mesh */
-    void birth();
+        /** computes the collision detection for an ivy segment oldPos->newPos, newPos will be modified if necessary */
+        bool computeCollision(const Vector3d &oldPos, Vector3d &newPos, bool &climbingState);
 
-    /** the ivy roots */
-    std::vector<IvyRoot> roots;
+        /** creates the ivy triangle mesh */
+        void birth();
 
-public:
+        /** the ivy roots */
+        std::vector<IvyRoot> roots;
 
-    /** the ivy size factor, influences the grow behaviour [0..0,1] */
-    float ivySize;
+    public:
 
-    /** leaf size factor [0..0,1] */
-    float ivyLeafSize;
+        /** Mesh that the ivy is growing on */
+        BasicMesh* mesh;
 
-    /** branch size factor [0..0,1] */
-    float ivyBranchSize;
+        /** the ivy size factor, influences the grow behaviour [0..0,1] */
+        float ivySize;
 
-    /** maximum length of an ivy branch segment that is freely floating [0..1] */
-    float maxFloatLength;
+        /** leaf size factor [0..0,1] */
+        float ivyLeafSize;
 
-    /** maximum distance for adhesion of scene object [0..1] */
-    float maxAdhesionDistance;
+        /** branch size factor [0..0,1] */
+        float ivyBranchSize;
 
-    /** weight for the primary grow vector [0..1] */
-    float primaryWeight;
+        /** maximum length of an ivy branch segment that is freely floating [0..1] */
+        float maxFloatLength;
 
-    /** weight for the random influence vector [0..1] */
-    float randomWeight;
+        /** maximum distance for adhesion of scene object [0..1] */
+        float maxAdhesionDistance;
 
-    /** weight for the gravity vector [0..1] */
-    float gravityWeight;
+        /** weight for the primary grow vector [0..1] */
+        float primaryWeight;
 
-    /** weight for the adhesion vector [0..1] */
-    float adhesionWeight;
+        /** weight for the random influence vector [0..1] */
+        float randomWeight;
 
-    /** the probability of producing a new ivy root per iteration [0..1]*/
-    float branchingProbability;
+        /** weight for the gravity vector [0..1] */
+        float gravityWeight;
 
-    /** the probability of creating a new ivy leaf [0..1] */
-    float leafProbability;
-};
+        /** weight for the adhesion vector [0..1] */
+        float adhesionWeight;
+
+        /** the probability of producing a new ivy root per iteration [0..1]*/
+        float branchingProbability;
+
+        /** the probability of creating a new ivy leaf [0..1] */
+        float leafProbability;
+    };
+}
