@@ -18,10 +18,7 @@
 **
 ***************************************************************************************/
 
-
 #include "basic_mesh.h"
-#include <QtOpenGL>
-
 
 BasicMesh::BasicMesh()
 {
@@ -321,4 +318,3 @@ void BasicMesh::createDisplayList(bool smooth)
 		}
 	}
 }
-

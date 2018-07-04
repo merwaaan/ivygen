@@ -18,20 +18,15 @@
 **
 ***************************************************************************************/
 
-
-#ifndef BASICMESH_H
-#define BASICMESH_H
+#pragma once
 
 #include "vector3d.h"
 #include "vector2d.h"
 #include <vector>
 #include <string>
 
-#include "core_global.h"
-
-
 /** a simple vertex */
-class CORESHARED_EXPORT BasicVertex
+class BasicVertex
 {
 public:
 
@@ -40,7 +35,7 @@ public:
 
 
 /** a simple normal vector */
-class CORESHARED_EXPORT BasicNormal
+class BasicNormal
 {
 public:
 
@@ -49,7 +44,7 @@ public:
 
 
 /** a simple uv texture coordinate */
-class CORESHARED_EXPORT BasicTexCoord
+class BasicTexCoord
 {
 public:
 
@@ -58,7 +53,7 @@ public:
 
 
 /** a simple material containing only a single texture */
-class CORESHARED_EXPORT BasicMaterial
+class BasicMaterial
 {
 public:
 
@@ -75,7 +70,7 @@ public:
 
 
 /** a simple triangle containing vertices, normals, texCoords, and a material */
-class CORESHARED_EXPORT BasicTriangle
+class BasicTriangle
 {
 public:
 
@@ -119,7 +114,7 @@ public:
 
 
 /** a simple triangle mesh */
-class CORESHARED_EXPORT BasicMesh
+class BasicMesh
 {
 public:
 
@@ -167,8 +162,3 @@ public:
 
 	unsigned int displayListObj;
 };
-
-
-#endif
-
-

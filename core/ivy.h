@@ -18,14 +18,11 @@
 **
 ***************************************************************************************/
 
+#pragma once
 
-#ifndef IVY_H
-#define IVY_H
-
-#include <core/vector3d.h>
-#include <core/basic_mesh.h>
+#include "vector3d.h"
+#include "basic_mesh.h"
 #include <vector>
-
 
 /** an ivy node */
 class IvyNode
@@ -137,6 +134,3 @@ public:
 	/** the probability of creating a new ivy leaf [0..1] */
 	float leafProbability;
 };
-
-
-#endif
