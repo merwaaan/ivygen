@@ -3,7 +3,7 @@
 
 int main()
 {
-    Ivygen::BasicMesh wall;
+    IvyGen::BasicMesh wall;
     // TODO Build wall
 
     IvyGen::Ivy ivy;

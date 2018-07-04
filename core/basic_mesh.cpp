@@ -37,7 +37,6 @@ void BasicMesh::reset()
 {
     vertices.clear();
     normals.clear();
-    texCoords.clear();
     triangles.clear();
 
     boundingSphereRadius = 1.0f;
@@ -56,10 +55,6 @@ void BasicMesh::prepareData()
         if (t->n0id != 0) t->n0 = &normals[t->n0id - 1];
         if (t->n1id != 0) t->n1 = &normals[t->n1id - 1];
         if (t->n2id != 0) t->n2 = &normals[t->n2id - 1];
-
-        if (t->t0id != 0) t->t0 = &texCoords[t->t0id - 1];
-        if (t->t1id != 0) t->t1 = &texCoords[t->t1id - 1];
-        if (t->t2id != 0) t->t2 = &texCoords[t->t2id - 1];
     }
 
     //compute bounding sphere

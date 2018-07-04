@@ -182,7 +182,7 @@ void Ivy::grow()
         for (std::vector<IvyNode>::iterator node = root->nodes.begin(); node != root->nodes.end(); ++node)
         {
             //weight depending on ratio of node length to total length
-            float weight = 1.0f - (cos(node->length / root->nodes.back().length * 2.0f * M_PI) * 0.5f + 0.5f);
+            float weight = 1.0f - (cos(node->length / root->nodes.back().length * 2.0f *  3.1415926535f) * 0.5f + 0.5f);
 
             //random influence
             float probability = rand() / (float)RAND_MAX;

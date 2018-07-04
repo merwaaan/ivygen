@@ -27,37 +27,25 @@
 namespace IvyGen
 {
     /** a simple vertex */
-    class BasicVertex
+    struct BasicVertex
     {
-    public:
-
         Vector3d pos;
     };
 
     /** a simple normal vector */
-    class BasicNormal
+    struct BasicNormal
     {
-    public:
-
         Vector3d dir;
     };
 
-    /** a simple uv texture coordinate */
-    class BasicTexCoord
-    {
-    public:
-
-        Vector2d pos;
-    };
-
     /** a simple triangle containing vertices, normals, texCoords, and a material */
-    class BasicTriangle
+    struct BasicTriangle
     {
-    public:
-
-        BasicTriangle() : v0(nullptr), v0id(0), v1(nullptr), v1id(0), v2(nullptr), v2id(0),
-            n0(nullptr), n0id(0), n1(nullptr), n1id(0), n2(nullptr), n2id(0),
-            t0(nullptr), t0id(0), t1(nullptr), t1id(0), t2(nullptr), t2id(0)
+        BasicTriangle() :
+            v0(nullptr), v0id(0), v1(nullptr), v1id(0), v2(nullptr), v2id(0),
+            n0(nullptr), n0id(0), n1(nullptr), n1id(0), n2(nullptr), n2id(0)
+        {
+        }
 
         BasicVertex* v0;
         unsigned int v0id;
@@ -77,15 +65,6 @@ namespace IvyGen
         BasicNormal* n2;
         unsigned int n2id;
 
-        BasicTexCoord* t0;
-        unsigned int t0id;
-
-        BasicTexCoord* t1;
-        unsigned int t1id;
-
-        BasicTexCoord* t2;
-        unsigned int t2id;
-
         Vector3d norm;
     };
 
@@ -99,7 +78,7 @@ namespace IvyGen
 
         void reset();
 
-        /** setup the triangles pointer to their vertices, normals, texCoords, and materials; computes the bounding sphere */
+        /** setup the triangles pointer to their vertices, normals, and materials; computes the bounding sphere */
         void prepareData();
 
         /** computes the vertex normals */
@@ -112,7 +91,6 @@ namespace IvyGen
 
         std::vector<BasicVertex> vertices;
         std::vector<BasicNormal> normals;
-        std::vector<BasicTexCoord> texCoords;
         std::vector<BasicTriangle> triangles;
 
         Vector3d boundingSpherePos;
